@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+{% if brewery %}
+<style type="text/css">
+#myModal > div {
+	color: black;
+}
+</style>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    $('#contact-form').validate({
+        rules: {
+            name: {
+                min: 2,
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                minlength: 2,
+                required: true
+            }
+        },
+        highlight: function (element) {
+            $(element).closest('.control-group').removeClass('success').addClass('error');
+        },
+        success: function (element) {
+            element.text('OK!').addClass('valid')
+                .closest('.control-group').removeClass('error').addClass('success');
+        }
+    });
+
+});
+
+</script>
+<br>
+<h2>{{ brewery.brewery_name }}</h2>
+<hr align="left" width="600px">
+<p>{{ brewery.address_line1 }}<br></p>
+{{ brewery.city }}, {{ brewery.state }} {{ brewery.zip_code }}</p>
+<p>Notes:  {{ brewery.notes }}</p>
+<row>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Report growler prices</button>
+</row>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Report {{ brewery.brewery_name }}'s growler prices</h4>
+      		</div>
+	      	<div class="modal-body">
+				<form class="form-horizontal" id="prices-form" role="form" action="" method="post">
+					{% csrf_token %}
+					{% for field in form %}
+				  		<div class="form-group">
+				    		<label class="control-label col-sm-2" id="prices"for="id_{{ field.name }}">{{ field.label }}</label>
+				    		<div class="col-sm-10"> 
+				      			<input type="number" min="0" max="100" class="form-control" required=true>
+				    		</div>
+				 		</div>
+					{% endfor %}
+					<input type="submit" value="Submit"/>
+				</form>
+				    <form method="POST" action="contact-form-submission.php" class="form-horizontal" id="contact-form">
+        <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+            <div class="controls">
+                <input type="number" name="name" id="name" placeholder="Your name">
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" name="save" value="contact">
+            <button type="submit" class="btn btn-success">Submit Message</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+    </form>
+				<p>{{ message }}</p>
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-primary">Save changes</button>
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+{% else %}
+    <p>No brewery matched your search criteria.</p>
+{% endif %}
+{% endblock %}

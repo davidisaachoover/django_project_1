@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-12">
+<br><br>
+<h2>You searched for: <strong>{{ query }}</strong></h2>
+
+{% if breweries %}
+    <p>Found {{ breweries|length }} Breweries.</p><br>
+    <ul>
+        {% for Brewery in breweries %}
+        	<h3>{{ Brewery.brewery_name }}</h3>
+        	<p>{{ Brewery.city }}, {{ Brewery.state }}</p>
+            {% if Brewery.price_today == '0' %}
+            <p>price today: closed</p>
+            {% elif Brewery.price_today == 'unknown' %}
+            <p>price today: unknown</p>
+            {% else %}
+            <p>price today: ${{ Brewery.price_today }}</p>
+        	{% endif %}<a href="../brewery/{{ Brewery.pk }}">details</a>
+        	<br>
+        	<hr align="left" width="300px">	
+        {% endfor %}
+    </ul>
+    <a href="" data-toggle="modal" data-target="#addBrewery">Don't see a brewery? Click here to add one</a>
+{% else %}
+    <p>No breweries matched your search criteria.</p>
+{% endif %}
+</div>
+{% endblock %}

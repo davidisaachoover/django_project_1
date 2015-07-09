@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Poop</title>
+        <style type="text/css"></style>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){	
+				jQuery.validator.addClassRules("field", {
+					required: true,
+					digits: true,
+					min: 1,
+					max: 20
+				});
+				$('#poop').validate();
+			});
+		</script>
+	</head>
+	<body>
+		<h3>How Much Would Wood a Wouldchuck Chuck?</h3>
+			<form name="wood" action="" method="post" id="poop">
+				Amount of Would: <br> <input type="text" name="wood" value="" size="3" maxlength="3" class="field"> <br>
+				Amount of Poop: <br> <input type="text" name="poop" value="" size="3" maxlength="3" class="field"> <br>
+				<button name="go" type="submit" value="Go" size="3">
+			</form>
+</body>
+</html>
