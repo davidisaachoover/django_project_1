@@ -39,12 +39,41 @@ def addBrewery(request):
 
 def index(request):
     today = date.today()
-    current_day = date.weekday(today) #returns digit 0-6
-    returned_header=site_header_set.objects.get(header_set_name='default')
-    return render(request, 'index.html', {'returned_header': returned_header, 'current_day': current_day})
+    current_day = date.weekday(today) #returns digit 0-6 (0 is Monday, 1 is Tuesday, etc...)
+    returned_header_set=site_header_set.objects.get(header_set_name='default')
+    header_line_1 = ""
+    header_line_2 = ""
+    if current_day == 0: 
+        header_line_1 = getattr(returned_header_set, 'Monday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Monday_line_2')
+    elif current_day == 1:
+        header_line_1 = getattr(returned_header_set, 'Tuesday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Tuesday_line_2') 
+    elif current_day == 2:
+        header_line_1 = getattr(returned_header_set, 'Wednesday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Wednesday_line_2')
+    elif current_day == 3:
+        header_line_1 = getattr(returned_header_set, 'Thursday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Thursday_line_2')
+    elif current_day == 4:
+        header_line_1 = getattr(returned_header_set, 'Friday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Friday_line_2')
+    elif current_day == 5:
+        header_line_1 = getattr(returned_header_set, 'Saturday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Saturday_line_2')
+    elif current_day == 6:
+        header_line_1 = getattr(returned_header_set, 'Sunday_line_1')
+        header_line_2 = getattr(returned_header_set, 'Sunday_line_2')     
+    else: 
+        header_line_1 = "There's great beer near you. Find it." 
+    return render(request, 'index.html', {'header_line_1' : header_line_1, 'header_line_2' : header_line_2, 'current_day': current_day})
 
 def donate(request):
     return render(request, 'donate.html')
+def about(request):
+    return render(request, 'about.html')
+def forbreweries(request):
+    return render(request, 'forbreweries.html')
 
 def now(request):
     now = datetime.datetime.now()
@@ -62,17 +91,37 @@ def search(request):
             error = True
         else: 
             breweries = Brewery.objects.filter(search_tags__icontains=q)
-            #now we get today's price
+            results_count = breweries.count()
+            known_price_breweries = []
+            unknown_price_breweries = []
+            closed_breweries = []
+
             for brewery in breweries:
                 try:
                     price_object = Displayed_prices.objects.get(brewery=brewery)
                     today_price = getattr(price_object, week_day)#http://stackoverflow.com/questions/763558/django-object-get-set-field
-                    if today_price == 0:
-                        today_price = "closed"
-                    brewery.price_today=today_price
+                    if today_price == '0':
+                        today_price = 'closed'
+                        brewery.price_today=today_price
+                        closed_breweries.append(brewery)
+                    elif today_price > 0:
+                        brewery.price_today=today_price
+                        known_price_breweries.append(brewery)
+                    else:
+                        raise Http404
                 except:
-                    brewery.price_today="unknown"
-            return render(request, 'search_results.html', {'breweries': breweries, 'query': q})
+                    brewery.price_today='unknown'
+                    unknown_price_breweries.append(brewery)
+                
+            known_price_breweries = sorted(known_price_breweries)
+            context_data = {
+                'known_price_breweries' : known_price_breweries,
+                'unknown_price_breweries' : unknown_price_breweries,
+                'closed_breweries' : closed_breweries,
+                'results_count' : results_count,
+                'query' : q
+            }
+            return render(request, 'search_results.html', context_data)
     return render(request, 'index.html', {'error': error}) #this only renders "if not q"
 
 def details(request, breweryID):

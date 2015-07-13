@@ -6,13 +6,13 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class AddDeal(forms.Form):
-    Sunday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
-    Monday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
-    Tuesday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
-    Wednesday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
-    Thursday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
-    Friday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
-    Saturday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2)
+    Sunday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
+    Monday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
+    Tuesday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
+    Wednesday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
+    Thursday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
+    Friday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
+    Saturday = forms.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(25)], decimal_places=2, required=False)
  
 
 class NameForm(forms.Form):

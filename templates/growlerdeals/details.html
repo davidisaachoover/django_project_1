@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="col-md-12">
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
 {% if brewery %}
     <style type="text/css">
     #myModal > div {
@@ -9,7 +11,6 @@
 	</style>
     <br>
     <h2>{{ brewery.brewery_name }}</h2>
-    <hr align="left" width="600px">
     <p>{{ brewery.address_line1 }}<br></p>
     {{ brewery.city }}, {{ brewery.state }} {{ brewery.zip_code }}</p>
     {% if brewery.website %}
@@ -21,43 +22,142 @@
     <br>
     <row>
         {% if prices %}
-            <h2>Here are the prices users have reported:</h2>
+            <p id="shrink">here are the prices users have reported:</p>
             {% for deal in prices %}
-                {% if deal.Sunday == '0' %}
-                <p>Sunday: closed<br></p>
-                {% else %}
-                <p>Sunday: ${{ deal.Sunday }} </p>
-                {% endif %}
-                {% if deal.Monday == '0' %}
-                <p>Monday: closed<br></p>
-                {% else %}
-                <p>Monday: ${{ deal.Monday }} </p>
-                {% endif %}
-                {% if deal.Tuesday == '0' %}
-                <p>Tuesday: closed<br></p>
-                {% else %}
-                <p>Tuesday: ${{ deal.Tuesday }} </p>
-                {% endif %}
-                {% if deal.Wednesday == '0' %}
-                <p>Wednesday: closed<br></p>
-                {% else %}
-                <p>Wednesday: ${{ deal.Wednesday }} </p>
-                {% endif %}
-                {% if deal.Thursday == '0' %}
-                <p>Thursday: closed<br></p>
-                {% else %}
-                <p>Thursday: ${{ deal.Thursday }} </p>
-                {% endif %}
-                {% if deal.Friday == '0' %}
-                <p>Friday: closed<br></p>
-                {% else %}
-                <p>Friday: ${{ deal.Friday }} </p>
-                {% endif %}
-                {% if deal.Saturday == '0' %}
-                <p>Saturday: closed<br></p>
-                {% else %}
-                <p>Saturday: ${{ deal.Saturday }} </p>
-                {% endif %}
+				<table id="price-horizontal">
+					<tr>
+						<th class="hdays">sun</th>
+						<th class="hdays">mon</th>
+						<th class="hdays">tue</th>
+						<th class="hdays">wed</th>
+						<th class="hdays">thu</th>
+						<th class="hdays">fri</th>
+						<th class="hdays">sat</th>
+					</tr>
+					<tr>
+						<td>
+							{% if deal.Sunday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Sunday }}</p>
+							{% endif %}
+						</td>
+						<td>
+							{% if deal.Monday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Monday }}</p>
+							{% endif %}
+						</td>
+						<td>
+							{% if deal.Tuesday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Tuesday }}</p>
+							{% endif %}
+						</td>
+						<td>
+							{% if deal.Wednesday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Wednesday }}</p>
+							{% endif %}
+						</td>
+						<td>
+							{% if deal.Thursday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Thursday }}</p>
+							{% endif %}
+						</td>
+						<td>
+							{% if deal.Friday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Friday }}</p>
+							{% endif %}
+						</td>
+						<td>
+							{% if deal.Saturday == '0' %}
+							<p class="hclosed">closed</p>
+							{% else %}
+							<p class="hprice">${{ deal.Saturday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+				</table>
+				<table id="price-vertical">
+					<tr>
+						<td class="vdays">sun:</td>
+						<td>
+							{% if deal.Sunday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Sunday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td class="vdays">mon:</td>
+						<td>
+							{% if deal.Monday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Monday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td class="vdays">tue:</td>
+						<td>
+							{% if deal.Tuesday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Tuesday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td class="vdays">wed:</td>
+						<td>
+							{% if deal.Wednesday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Wednesday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td class="vdays">thu:</td>
+						<td>
+							{% if deal.Thursday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Thursday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td class="vdays">fri:</td>
+						<td>
+							{% if deal.Friday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Friday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td class="vdays">sat:</td>
+						<td>
+							{% if deal.Saturday == '0' %}
+							<p class="vclosed">closed</p>
+							{% else %}
+							<p class="vprice">${{ deal.Saturday }}</p>
+							{% endif %}
+						</td>
+					</tr>
+				</table>
             {% endfor %}
                 <a>something look wrong? &#9888;</a>
         {% else %}
@@ -71,70 +171,70 @@
 
             
             <div class="form-group">
-                <label for="input-Sunday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Sunday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="priceSunday" name="Sunday">
+                <label for="input-Sunday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Sunday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="priceSunday" name="Sunday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id="closedSunday"><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id="closedSunday"><label style="padding-left: 10px;">Closed</label></div>
             </div>
 
             <div class="form-group">
-                <label for="input-Monday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Monday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="" name="Monday">
+                <label for="input-Monday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Monday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="" name="Monday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
 			</div>
 
             <div class="form-group">
-                <label for="input-Tuesday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Tuesday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="" name="Tuesday">
+                <label for="input-Tuesday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Tuesday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="" name="Tuesday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
 			</div>
 
             <div class="form-group">
-                <label for="input-Wednesday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Wednesday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="" name="Wednesday">
+                <label for="input-Wednesday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Wednesday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="" name="Wednesday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
 			</div>
 
             <div class="form-group">
-                <label for="input-Thursday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Thursday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="" name="Thursday">
+                <label for="input-Thursday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Thursday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="" name="Thursday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
 			</div>
 
             <div class="form-group">
-                <label for="input-Friday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Friday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="" name="Friday">
+                <label for="input-Friday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Friday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="" name="Friday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
 			</div>
 
             <div class="form-group">
-                <label for="input-Saturday" class="col-sm-2 col-xs-6" style="padding-top: 5px;">Saturday</label>
-                <div class="input-group col-sm-2" style="margin-right: 10px;">
-                    <div class="input-group-addon">$</div><input type="number" class="form-control" id="" name="Saturday">
+                <label for="input-Saturday" class="col-sm-4 col-xs-6" style="padding-top: 5px;">Saturday</label>
+                <div class="input-group col-sm-3" style="margin-right: 10px;">
+                    <div class="input-group-addon">$</div><input type="number" step=".01" class="form-control" id="" name="Saturday">
                 </div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
-				<div class="col-sm-offset-2 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: 10px; font-size: 15px;"></div>
+				<div class="col-sm-offset-4 col-xs-offset-6" style="padding-top: -10px; font-size: 15px;"><input type="checkbox" class="closed" id=""><label style="padding-left: 10px;">Closed</label></div>
 			</div>
 
             <div class="form-group">
-                <div class="col-sm-offset-2 col-xs-offset-6">
+                <div class="col-sm-offset-4 col-xs-offset-6">
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
             </div>

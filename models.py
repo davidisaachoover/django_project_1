@@ -39,61 +39,29 @@ class Prices(models.Model):
  
 class User_added_deal(models.Model):
     brewery = models.ForeignKey(Brewery)
-    Sunday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
-    Monday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
-    Tuesday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
-    Wednesday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
-    Thursday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
-    Friday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
-    Saturday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null = True)
+    Sunday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
+    Monday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
+    Tuesday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
+    Wednesday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
+    Thursday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
+    Friday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
+    Saturday = models.DecimalField(max_digits=4, validators=[MinValueValidator(0), MaxValueValidator(100)], decimal_places=2, null=True)
     TimeSubmitted = models.DateTimeField(auto_now_add=True)
-    votes = models.IntegerField(default=1)
     submitted_ip = models.GenericIPAddressField(null=True)
-    def change_to_closed(deal):
-        if deal.Sunday == 0:
-            deal.Sunday="closed"
-        if deal.Monday==0:
-            deal.Monday="closed"
-        if deal.Tuesday==0:
-            deal.Tuesday="closed"
-        if deal.Wednesday==0:
-            deal.Wednesday="closed"
-        if deal.Thursday==0:
-            deal.Thursday="closed"
-        if deal.Friday==0:
-            deal.Friday="closed"
-        if deal.Saturday==0:
-            deal.Saturday="closed"
+
 
 
 class Displayed_prices(models.Model):
     brewery = models.OneToOneField(Brewery)
-    Sunday = models.CharField(max_length=12)
-    Monday = models.CharField(max_length=12)
-    Tuesday = models.CharField(max_length=12)
-    Wednesday = models.CharField(max_length=12)
-    Thursday = models.CharField(max_length=12)
-    Friday = models.CharField(max_length=12)
-    Saturday = models.CharField(max_length=12)
+    Sunday = models.CharField(max_length=12, blank=True)
+    Monday = models.CharField(max_length=12, blank=True)
+    Tuesday = models.CharField(max_length=12, blank=True)
+    Wednesday = models.CharField(max_length=12, blank=True)
+    Thursday = models.CharField(max_length=12, blank=True)
+    Friday = models.CharField(max_length=12, blank=True)
+    Saturday = models.CharField(max_length=12, blank=True)
     last_modified = models.DateTimeField(auto_now=True)
     brewery_confirmed = models.BooleanField(default=False)
-    def change_to_closed(deal):
-        if deal.Sunday == 0:
-            deal.Sunday="closed"
-        if deal.Monday==0:
-            deal.Monday="closed"
-        if deal.Tuesday==0:
-            deal.Tuesday="closed"
-        if deal.Wednesday==0:
-            deal.Wednesday="closed"
-        if deal.Thursday==0:
-            deal.Thursday="closed"
-        if deal.Friday==0:
-            deal.Friday="closed"
-        if deal.Saturday==0:
-            deal.Saturday="closed"
-    #def __str__(self):
-        #return '%s prices' % (brewery)
 
 
 

@@ -58,8 +58,6 @@
 					}
 				});
 				jQuery.validator.addClassRules("form-control", {
-					required: true,
-					digits: true,
 					min: 1,
 					max: 25
 				});
@@ -169,8 +167,7 @@
 			                <input type="number" class="form-control" id="zip_code" name="zip_code" maxlength="9" required>
 		                </div>
 		            </div>
-			        <div class="modal-footer">    
-			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <div class="modal-footer">
 			            <button type="submit" class="btn btn-primary">Submit</button>
 		        	</div>
 	            </form>		        
@@ -183,11 +180,11 @@
 	    <div class="modal-content">
 		    <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="addBreweryLabel">What kind of info?</h4>
+		        <h4 class="modal-title" id="addBreweryLabel">What do you have to share?</h4>
 		    </div>
 		    <div class="modal-body">
 				<button type="button" class="btn btn-default btn-sm" id="new">Add a brewery</button><span style="padding-left: 20px; padding-right: 15px;">or</span>
-				<button type="button" class="btn btn-default btn-sm" id="old">Add info to an existing brewery</button>
+				<button type="button" class="btn btn-default btn-sm" id="old">Add to an existing brewery</button>
 			</div>
 			<div class="modal-body" id="newBrew" style="display: none;">
 		    	<div id="addBrewery">
@@ -264,11 +261,11 @@
 			<section class="hero">
 				<div class="container">
 					<div class="row nav-wrapper">
-						<div class="col-md-6 col-sm-6 col-xs-6 text-left">
-							<a href="/#"><img src="{% static 'growlerdeals/img/logo-monochrome-1000px.png' %}" style="width60px;height:60px;"></a> 
+						<div class="col-md-9 col-sm-9 col-xs-9 text-left" style="padding-left: 5px; padding-right: 0px;">
+							<a href="/#"><img src="{% static 'growlerdeals/img/logo-monochrome-1000px.png' %}" style="width60px;height:60px;"></a><span id="wordmark">growlerdeals<span style="color: #FFC300;">.beer</span></span> 
 						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6 text-right navicon">
-							<p>menu</p><a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a>
+						<div class="col-md-3 col-sm-3 col-xs-3 text-right navicon">
+							<a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a>
 						</div>
 					</div>
 					<div class="row hero-content">
@@ -277,7 +274,7 @@
 				</div>
 			</section>
 		</header>
-		<footer>
+		<footer style="display: none;">
 			<div class="container" id="footer-container">
 				<div class="row">
 					<div class="col-md-5">
@@ -285,10 +282,10 @@
 					</div>
 					<div class="col-md-7">
 						<ul class="footer-nav">
-							<li><a href="#about">about</a></li>
+							<li><a href="/about/">about</a></li>
 							<li><a href="" data-toggle="modal" data-target="#addBrewery">add brewery</a></li>
-							<li><a href="#Donate">donate</a></li>
-							<li><a href="#I'm A Brewery">i'm a brewery</a></li>
+							<li><a href="/donate/">donate</a></li>
+							<li><a href="/forbreweries/">i'm a brewery</a></li>
 							<!--<li><a href="/contact/">contact us</a></li>-->
 						</ul>
 					</div>
@@ -299,11 +296,11 @@
 			<nav>
 				<ul>
 					<li><a href="" data-toggle="modal" data-target="#addInfo"><i class="glyphicon glyphicon-plus"></i>add info</a></li>
-					<li><a href="#about"><i class="glyphicon glyphicon-tint"></i>about</a></li>
+					<li><a href="/about/"><i class="glyphicon glyphicon-tint"></i>about</a></li>
 				</ul>
 				<ul>
-					<li><a href="#donate"><i class="glyphicon glyphicon-globe"></i>donate</a></li>
-					<li><a href="#i'm_a_brewery"><i class="glyphicon glyphicon-user"></i>i'm a brewery</a></li>
+					<li><a href="/donate/"><i class="glyphicon glyphicon-globe"></i>contribute</a></li>
+					<li><a href="/forbreweries/"><i class="glyphicon glyphicon-user"></i>i'm a brewery</a></li>
 				</ul>
 			</nav>
 		</div>

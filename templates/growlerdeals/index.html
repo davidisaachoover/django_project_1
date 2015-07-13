@@ -15,25 +15,8 @@
 
 
 </style>
-
-
-{% if current_day == 0 %}
-<h1 class="animated fadeInDown">{{ returned_header.Monday_line_1 }}<br>{{ returned_header.Monday_line_2 }}</h1>
-{% elif current_day = 1 %}
-<h1 class="animated fadeInDown">{{ returned_header.Tuesday_line_1 }}<br>{{ returned_header.Tuesday_line_2 }}</h1>
-{% elif current_day = 2 %}
-<h1 class="animated fadeInDown">{{ returned_header.Wednesday_line_1 }}<br>{{ returned_header.Wednesday_line_2 }}</h1>
-{% elif current_day = 3 %}
-<h1 class="animated fadeInDown">{{ returned_header.Thursday_line_1 }}<br>{{ returned_header.Thursday_line_2 }}</h1>
-{% elif current_day = 4 %}
-<h1 class="animated fadeInDown">{{ returned_header.Friday_line_1 }}<br>{{ returned_header.Friday_line_2 }}</h1>
-{% elif current_day = 5 %}
-<h1 class="animated fadeInDown">{{ returned_header.Saturday_line_1 }}<br>{{ returned_header.Saturday_line_2 }}</h1>
-{% elif current_day = 6 %}
-<h1 class="animated fadeInDown">{{ returned_header.Sunday_line_1 }}<br>{{ returned_header.Sunday_line_2 }}</h1>
-{% else %}
-<h1 class="animated fadeInDown">There's great beer near you. Find it.</h1>
-{% endif %}
+<h1 class="animated fadeInDown">{{ header_line_1 }}</h1>
+<h1 class="animated fadeInDown" style="margin-top: -35px">{{ header_line_2 }}</h1>
 
     <form action="/search/" method="get">
         <span class="input input--hoshi">

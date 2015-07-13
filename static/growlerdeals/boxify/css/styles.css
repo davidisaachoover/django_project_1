@@ -584,13 +584,13 @@ Hero
 .hero {
     position: relative;
     padding: 30px 0 30px 0;
-    min-height: 800px;
+    min-height: 100vh;
     background: #251a11 no-repeat center center;
     background-size: cover;
     color: #fff;
 }
 .hero h1 {
-    margin: 200px 0 45px 0;
+    margin: 160px 0 45px 0;
     font-weight: 300;
     font-size: 45px;
     font-family: 'leaguespartan', Arial, sans-serif; 
@@ -959,4 +959,135 @@ Waypoints
 
 .modal-content{
 	border-radius: 1px;
+}
+
+.btn-primary {
+	background-color: #291F1A;
+	border-color: #241B17;
+}
+.btn-primary:hover {
+	background-color: #291F1A;
+	border-color: #241B17;
+	color: #ffc300;
+}
+
+#price-today {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.results {
+	color: #FFC300;
+	font-size: 72px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.dollar {
+	color: #FFC300;
+	font-size: 35px;
+	vertical-align: top;
+}
+
+#brewery-details {
+	text-align: left;
+}
+
+.hdays {
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 1.5em;
+	color: #FFC300;
+}
+
+.hprice {
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.hclosed {
+	text-align: center;
+}
+
+.vdays {
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 1.5em;
+	text-align: left;
+	color: #FFC300;
+}
+
+.vprice {
+	padding-left: 30px;
+	padding-right: 15px;
+	font-size: 1.5em;
+	text-align: right;
+}
+
+.vclosed {
+	text-align: center;
+}
+
+#shrink {
+	font-size: 1.5em;
+}
+
+@media screen and (max-width: 490px) {
+	#shrink {
+		font-size: 4.3vw;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#price-horizontal {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 501px) {
+	#price-vertical {
+		display: none;
+	}
+}
+
+#wordmark {
+	padding-left: 15px;
+	font-size: 2em;
+}
+
+@media screen and (max-width: 520px) {
+	#wordmark {
+		padding-left: 5px;
+		font-size: 5.3vw;
+	}
+}
+
+.navicon {
+	margin-top: 10px;
+}
+
+#from {
+	color: #FFC300;
+	text-align: center;
+	font-size: 0.75em;
+}
+
+.form-control:focus {
+  border-color: #FFC300;
+  box-shadow: inset 0px 0px 0px 0px #FFC300;
+}
+
+.btn:focus {
+  border-color: #FFC300;
+  box-shadow: inset 0px 0px 0px 0px #FFC300;
+}
+
+.btn-default:focus {
+  border-color: #FFC300;
+  box-shadow: inset 0px 0px 0px 0px #FFC300;
+}
+
+.btn-sm:focus {
+  border-color: #FFC300;
+  box-shadow: inset 0px 0px 0px 0px #FFC300;
 }

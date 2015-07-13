@@ -71,7 +71,6 @@
 
 .input__field--hoshi {
 	margin-top: 1.3em;
-	padding: 0.85em 0.15em;
 	width: 100%;
 	background: transparent;
 	color: #FFFFFF;
@@ -166,7 +165,7 @@
 	}
 }
 
-@media screen and (max-width: 487px) {
+/*@media screen and (max-width: 487px) {
 	.input {
 		max-width: 85%;
 	}
@@ -196,4 +195,26 @@
 @media screen and (max-width: 360px) {
 	.input__label--hoshi {
 		padding-top: 3.5vh;
+	}*/
+	
+@media screen and (max-width: 488px) {
+	.input {
+		max-width: calc(100vw - 85px);
 	}
+}
+
+@media screen and (max-width: 410px){
+	.input__label--hoshi {
+		font-size: 4.23vw;
+		padding-top: 2.3vh;
+	}	
+}
+
+@media screen and (max-width: 333px){
+	.input__label--hoshi {
+		font-size: 4.23vw;
+		padding-top: 4vh;
+	}	
+}
+
+
